@@ -9,7 +9,7 @@ ENV CLOUD_SDK_VERSION 183.0.0
 
 ENV PATH /google-cloud-sdk/bin:$PATH
 ENV ANDROID_HOME=/opt/android-sdk-linux
-ENV PATH ${PATH}:${ANDROID_HOME}/platform-tools/:${ANDROID_NDK_HOME}:${ANDROID_HOME}/ndk-bundle:${ANDROID_HOME}/tools/bin/
+ENV PATH ${PATH}:${ANDROID_HOME}/platform-tools/:${ANDROID_NDK_HOME}:${ANDROID_HOME}/ndk-bundle:${ANDROID_HOME}/cmdline-tools/tools/bin
 
 RUN apt-get update && \
 apt-get install -y file && \
@@ -29,8 +29,8 @@ RUN apt-get install curl \
     gcloud --version
     
 RUN mkdir -p ${ANDROID_HOME} \
-&& wget --quiet --output-document=${ANDROID_HOME}/android-sdk.zip https://dl.google.com/android/repository/sdk-tools-linux-${ANDROID_SDK_TOOLS_REV}.zip \
-&& unzip -qq ${ANDROID_HOME}/android-sdk.zip -d ${ANDROID_HOME} \
+&& wget --quiet --output-document=${ANDROID_HOME}/android-sdk.zip https://dl.google.com/android/repository/commandlinetools-linux-${ANDROID_SDK_TOOLS_REV}_latest.zip \
+&& unzip -qq ${ANDROID_HOME}/android-sdk.zip -d ${ANDROID_HOME}/cmdline-tools \
 && rm ${ANDROID_HOME}/android-sdk.zip \
 && mkdir -p $HOME/.android \
 && echo 'count=0' > $HOME/.android/repositories.cfg
