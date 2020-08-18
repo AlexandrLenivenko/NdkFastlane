@@ -3,7 +3,8 @@ FROM openjdk:8-jdk
 ENV ANDROID_COMPILE_SDK="29" \
 ANDROID_BUILD_TOOLS="29.0.2" \
 ANDROID_SDK_TOOLS_REV="6609375" \
-ANDROID_CMAKE_REV="3.10.2.4988404"
+ANDROID_CMAKE_REV="3.6.4111459" \
+ANDROID_NDK_VERSION_REV="21.0.6113669"
 
 ENV CLOUD_SDK_VERSION 183.0.0
 
@@ -48,7 +49,7 @@ RUN yes | sdkmanager --licenses > /dev/null \
 && yes | sdkmanager --licenses
 
 RUN yes | sdkmanager 'cmake;'$ANDROID_CMAKE_REV \
-&& yes | sdkmanager 'ndk-bundle' 
+&& yes | sdkmanager --install 'ndk;'$ANDROID_NDK_VERSION_REV
 
 
 RUN gcloud init
